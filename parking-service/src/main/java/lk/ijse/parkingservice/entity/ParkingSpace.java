@@ -1,5 +1,6 @@
 package lk.ijse.parkingservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class ParkingSpace {
 
     @ManyToOne
     @JoinColumn(name = "lot_id")
+    @JsonIgnore
     private ParkingLot parkingLot;
 
     // Getters & Setters

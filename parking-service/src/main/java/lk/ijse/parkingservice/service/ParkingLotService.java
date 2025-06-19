@@ -13,8 +13,12 @@ import java.util.List;
  * Project: parking-system
  * ------------------------------------------------
  */
-public interface ParkingLotService {
+public interface ParkingLotService{
     ParkingLot createLot(ParkingLotRequest request);
 
     List<ParkingLot> getAllLots();
+
+    ParkingLot updateParkingLot(Long id, ParkingLotRequest request);
+
+    void deleteParkingLot(Long id);
 }

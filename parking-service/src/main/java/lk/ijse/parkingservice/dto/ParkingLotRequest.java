@@ -19,6 +19,7 @@ public class ParkingLotRequest {
     public String name;
     public String location;
     private int totalSpaces;
+    private int ownerId;
 
 }
 

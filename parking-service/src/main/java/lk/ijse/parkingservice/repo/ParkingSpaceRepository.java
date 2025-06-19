@@ -21,7 +21,7 @@ import java.util.List;
  * ------------------------------------------------
  */
 @Repository
-public interface ParkingSpaceRepository extends JpaRepository<ParkingSpace, String> {
+public interface ParkingSpaceRepository extends JpaRepository<ParkingSpace, Long> {
     List<ParkingSpace> findByParkingLotId(Long lotId);
 
     @Modifying

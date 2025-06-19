@@ -5,6 +5,7 @@ import lk.ijse.parkingservice.dto.ParkingSpaceStatusUpdateRequest;
 import lk.ijse.parkingservice.entity.ParkingSpace;
 import lk.ijse.parkingservice.service.ParkingSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,20 +15,33 @@ import java.util.List;
 public class ParkingSpaceController {
 
     @Autowired
-    private ParkingSpaceService spaceService;
+    private ParkingSpaceService parkingSpaceService;
 
-    @GetMapping("/lot/{lotId}")
-    public List<ParkingSpace> getByLot(@PathVariable Long lotId) {
-        return spaceService.getSpacesByLot(lotId);
+    // Get spaces by lot ID
+    @GetMapping("get/lot/{lotId}")
+    public ResponseEntity<List<ParkingSpace>> getSpacesByLot(@PathVariable Long lotId) {
+        List<ParkingSpace> spaces = parkingSpaceService.getSpacesByLot(lotId);
+        return ResponseEntity.ok(spaces);
     }
 
-    @PostMapping("/reserve")
-    public ParkingSpace create(@RequestBody ParkingSpaceRequest request) {
-        return spaceService.createSpace(request);
+    // Create a new space under a lot
+    @PostMapping("save")
+    public ResponseEntity<ParkingSpace> createSpace(@RequestBody ParkingSpaceRequest request) {
+        ParkingSpace newSpace = parkingSpaceService.createSpace(request);
+        return ResponseEntity.status(201).body(newSpace);
     }
 
-    @PutMapping("/status/{id}")
-    public ParkingSpace updateStatus(@PathVariable Long id, @RequestBody ParkingSpaceStatusUpdateRequest request) {
-        return spaceService.updateStatus(id, request.status);
+    // Update parking space status
+    @PutMapping("update/{id}")
+    public ResponseEntity<ParkingSpace> updateStatus(@PathVariable Long id, @RequestBody ParkingSpaceStatusUpdateRequest status) {
+        ParkingSpace updated = parkingSpaceService.updateStatus(id, status);
+        return ResponseEntity.ok(updated);
+    }
+
+    // Delete a parking space
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Void> deleteSpace(@PathVariable Long id) {
+        parkingSpaceService.deleteSpace(id);
+        return ResponseEntity.noContent().build();
     }
 }
