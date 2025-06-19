@@ -22,4 +22,6 @@ public interface VehicleService {
     void deleteVehicle(Long id);
     VehicleResponse simulateEntry(Long id);
     VehicleResponse simulateExit(Long id);
+
+    VehicleResponse getVehicleByLicensePlate(String licensePlate);
 }

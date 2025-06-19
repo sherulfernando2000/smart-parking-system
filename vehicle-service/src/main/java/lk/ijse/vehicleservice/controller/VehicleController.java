@@ -34,36 +34,41 @@ public class VehicleController {
         return new ResponseEntity<>(vehicleService.registerVehicle(request), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("get/{id}")
     public ResponseEntity<VehicleResponse> getVehicle(@PathVariable Long id) {
         return ResponseEntity.ok(vehicleService.getVehicle(id));
     }
 
-    @PutMapping("/{id}")
+    @GetMapping("getBy/{licensePlate}")
+    public ResponseEntity<VehicleResponse> getVehicleByLicensePlate(@PathVariable String licensePlate) {
+        return ResponseEntity.ok(vehicleService.getVehicleByLicensePlate(licensePlate));
+    }
+
+    @PutMapping("update/{id}")
     public ResponseEntity<VehicleResponse> updateVehicle(@PathVariable Long id, @RequestBody VehicleRequest request) {
         return ResponseEntity.ok(vehicleService.updateVehicle(id, request));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicle(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("get/user/{userId}")
     public ResponseEntity<List<VehicleResponse>> getVehiclesByUser(@PathVariable Long userId) {
         return ResponseEntity.ok(vehicleService.getVehiclesByUserId(userId));
     }
 
-//    @PostMapping("/{id}/entry")
-//    public ResponseEntity<VehicleResponse> simulateEntry(@PathVariable Long id) {
-//        return ResponseEntity.ok(vehicleService.simulateEntry(id));
-//    }
+    @PostMapping("save/{id}/entry")
+    public ResponseEntity<VehicleResponse> simulateEntry(@PathVariable Long id) {
+        return ResponseEntity.ok(vehicleService.simulateEntry(id));
+    }
 
-//    @PostMapping("/{id}/exit")
-//    public ResponseEntity<VehicleResponse> simulateExit(@PathVariable Long id) {
-//        return ResponseEntity.ok(vehicleService.simulateExit(id));
-//    }
+    @PostMapping("save/{id}/exit")
+    public ResponseEntity<VehicleResponse> simulateExit(@PathVariable Long id) {
+        return ResponseEntity.ok(vehicleService.simulateExit(id));
+    }
 
     @GetMapping
     public String get(){

@@ -103,6 +103,14 @@ public class VehicleServiceImpl implements VehicleService {
         return mapToResponse(vehicleRepository.save(vehicle));
     }
 
+    @Override
+    public VehicleResponse getVehicleByLicensePlate(String licensePlate) {
+        Vehicle vehicle = vehicleRepository.findByLicensePlate(licensePlate)
+                .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+
+        return modelMapper.map(vehicle,VehicleResponse.class);
+    }
+
     private VehicleResponse mapToResponse(Vehicle vehicle) {
         VehicleResponse response = new VehicleResponse();
         response.setId(vehicle.getId());

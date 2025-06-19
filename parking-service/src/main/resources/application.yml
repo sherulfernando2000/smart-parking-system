@@ -1,12 +1,12 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   application:
-    name: vehicle-service
+    name: parking-service
 
 #  datasource:
-#    url: jdbc:mysql://localhost:3306/spms_vehicle_db?createDatabaseIfNotExist=true
+#    url: jdbc:mysql://localhost:3306/spms_parking_db?createDatabaseIfNotExist=true
 #    username: root
 #    password: Ijse@123
 #    driver-class-name: com.mysql.cj.jdbc.Driver
@@ -20,7 +20,7 @@ spring:
   config:
     import: optional:configserver:http://localhost:8888/
 
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:8761/eureka/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
