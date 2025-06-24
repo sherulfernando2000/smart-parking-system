@@ -4,6 +4,8 @@ import lk.ijse.userserver.dto.BookingResponse;
 import lk.ijse.userserver.dto.LoginRequest;
 import lk.ijse.userserver.dto.RegisterRequest;
 import lk.ijse.userserver.dto.UserProfileResponse;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
@@ -21,5 +23,6 @@ public interface UserService {
     UserProfileResponse getProfile(String email);
     List<BookingResponse> getUserBookings(String email);
     UserProfileResponse getUserById(Long id);
+    public UserDetails loadUserByUsername(String username) ;
 
 }

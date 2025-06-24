@@ -7,6 +7,7 @@ import lk.ijse.userserver.dto.UserProfileResponse;
 import lk.ijse.userserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+
     @GetMapping("get")
     public String getUser(){
         return "User";
@@ -42,9 +45,9 @@ public class UserController {
         return ResponseEntity.ok(token);
     }
 
-    @GetMapping("/profile")
-    public ResponseEntity<UserProfileResponse> getProfile(@RequestParam String email) {
-        return ResponseEntity.ok(userService.getProfile(email));
+    @GetMapping("profile/{email}")
+    public ResponseEntity<UserDetails> getProfile(@PathVariable String email) {
+        return ResponseEntity.ok(userService.loadUserByUsername(email));
     }
 
     @GetMapping("/bookings")

@@ -1,4 +1,4 @@
-package lk.ijse.userserver.dto;
+package lk.ijse.apigateway.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,16 +8,16 @@ import lombok.NoArgsConstructor;
  * ------------------------------------------------
  * Author: Sherul Fdo
  * GitHub: https://github.com/sherulfernando2000
- * Created: 6/15/2025 5:49 AM
+ * Created: 6/22/2025 5:30 AM
  * Project: parking-system
  * ------------------------------------------------
  */
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-public class UserProfileResponse {
-    private String username;
+@NoArgsConstructor
+@AllArgsConstructor
+public class LoginRequest {
     private String email;
     private String password;
-    private String role;
+
+
 }
