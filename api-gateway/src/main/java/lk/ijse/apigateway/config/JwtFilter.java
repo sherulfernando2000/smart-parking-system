@@ -37,7 +37,7 @@ public class JwtFilter implements WebFilter {
         try {
             String username = jwtUtil.getUsernameFromToken(token);
             System.out.println("Username: " + username);
-            if (username != null && ReactiveSecurityContextHolder.getContext().map(SecurityContext::getAuthentication).block() == null) {
+            if (username != null ) {
                 return userDetailsService.findByUsername(username)
                         .flatMap(userDetails -> {
                             if (jwtUtil.validateToken(token, userDetails)) {
@@ -50,7 +50,7 @@ public class JwtFilter implements WebFilter {
                         });
             }
         } catch (Exception e) {
-            // Log the error if needed
+           e.printStackTrace();
         }
 
         return chain.filter(exchange);

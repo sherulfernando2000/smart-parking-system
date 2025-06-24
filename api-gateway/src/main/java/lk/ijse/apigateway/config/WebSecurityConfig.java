@@ -28,7 +28,8 @@ public class WebSecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/api/v1/auth/authenticate",
-                                "/vehicle-service/api/v1/vehicle/**"
+                                "/user-service/**"
+//                                "/vehicle-service/api/v1/vehicle/**"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )

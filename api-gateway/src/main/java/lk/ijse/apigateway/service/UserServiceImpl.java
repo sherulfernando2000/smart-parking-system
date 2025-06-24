@@ -37,7 +37,7 @@ public class UserServiceImpl implements ReactiveUserDetailsService {
 
     private UserDetails convertToUserDetails(UserDTO userDTO) {
         return new org.springframework.security.core.userdetails.User(
-                userDTO.getEmail(),
+                userDTO.getUsername(),
                 userDTO.getPassword(),
                 getAuthorities(userDTO.getRole())
         );

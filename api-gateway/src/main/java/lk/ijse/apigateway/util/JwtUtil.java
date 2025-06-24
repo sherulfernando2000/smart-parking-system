@@ -31,7 +31,18 @@ public class JwtUtil implements Serializable {
 
     //retrieve username from jwt token
     public String getUsernameFromToken(String token) {
-        return getClaimFromToken(token, Claims::getSubject);
+//        System.out.println("Extracting username from token 1: " + token+"-");
+//        return getClaimFromToken(token, Claims::getSubject);
+
+        try {
+            Claims claims = getAllClaimsFromToken(token);
+            String username = claims.getSubject();
+            System.out.println("Parsed username (sub): " + username);
+            return username;
+        } catch (Exception e) {
+            System.out.println("JWT parsing failed: " + e.getMessage());
+            return null;
+        }
     }
 
     public Claims getUserRoleCodeFromToken(String token) {
@@ -45,6 +56,7 @@ public class JwtUtil implements Serializable {
 
 
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+        System.out.println("Extracting claims from token 2: " + token);
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
     }
@@ -66,8 +78,9 @@ public class JwtUtil implements Serializable {
     //generate token for user
     public String generateToken(UserDTO userDTO) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role",userDTO.getRole());
-        return doGenerateToken(claims, userDTO.getEmail());
+        claims.put("role","USER");
+        System.out.println("email: " + userDTO.getUsername());
+        return doGenerateToken(claims, userDTO.getUsername());
     }
 
     //while creating the token -

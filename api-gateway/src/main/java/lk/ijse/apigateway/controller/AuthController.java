@@ -28,12 +28,14 @@ public class AuthController {
 
     @PostMapping("/authenticate")
     public Mono<ResponseEntity<?>> authenticate(@RequestBody LoginRequest login) {
+        System.out.println("Received login request for email: " + login.getEmail());
         return userClient.getUserByEmail(login.getEmail())
                 .flatMap(user -> {
+                    System.out.println("User found: " + user.getUsername());
                     if (passwordMatches(login.getPassword(), user.getPassword())) {
                         UserDTO userDTO = new UserDTO();
-                        userDTO.setEmail(user.getEmail());
-                        userDTO.setRole(user.getRole());
+                        userDTO.setUsername(user.getUsername());
+                        userDTO.setAuthorities(user.getAuthorities());
                         String token = jwtUtil.generateToken(userDTO);
                         return Mono.just(ResponseEntity.ok(new JwtRespone(token)));
                     }
