@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/parking-records")
+@RequestMapping("parking-service/api/v1/parking-records")
 public class ParkingRecordController {
 
     @Autowired

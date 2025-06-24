@@ -3,6 +3,8 @@ package lk.ijse.paymentservice.service;
 import lk.ijse.paymentservice.dto.PaymentRequest;
 import lk.ijse.paymentservice.dto.PaymentResponse;
 
+import java.util.List;
+
 /**
  * ------------------------------------------------
  * Author: Sherul Fdo
@@ -13,4 +15,6 @@ import lk.ijse.paymentservice.dto.PaymentResponse;
  */
 public interface PaymentService {
     public PaymentResponse processPayment(PaymentRequest request);
+
+    List<PaymentResponse> getAllPayments();
 }

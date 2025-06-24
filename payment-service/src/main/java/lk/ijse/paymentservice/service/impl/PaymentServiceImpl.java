@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * ------------------------------------------------
@@ -63,5 +65,18 @@ public class PaymentServiceImpl implements PaymentService {
         return new PaymentResponse(
                 payment.getReceiptNumber(), amount, payment.getPaidAt(), payment.getStatus().toString()
         );
+    }
+
+    @Override
+    public List<PaymentResponse> getAllPayments() {
+        List<Payment> payments = paymentRepo.findAll();
+        return payments.stream()
+                .map(payment -> new PaymentResponse(
+                        payment.getReceiptNumber(),
+                        payment.getAmount(),
+                        payment.getPaidAt(),
+                        payment.getStatus().toString()
+                ))
+                .collect(Collectors.toList());
     }
 }

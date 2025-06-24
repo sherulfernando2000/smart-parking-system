@@ -7,10 +7,5 @@ spring:
 
 eureka:
   client:
-    #    Server should not register itself as a service
-    #    central service registry,
-    #    Eureka server eka client kenenk vidiyata novima
     register-with-eureka: false
-    #    This prevents fetching its own service list
-    #    Eureka Server ekata thamanage client list eka ganna beri wenna
     fetch-registry: false

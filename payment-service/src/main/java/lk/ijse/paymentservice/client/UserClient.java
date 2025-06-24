@@ -25,7 +25,7 @@ public class UserClient {
     public ParkingRecordDTO getParkingRecordById(Long id) {
         return webClientBuilder.build()
                 .put()
-                .uri(parkingServiceUrl + "/api/v1/parking-records/end/" + id)
+                .uri(parkingServiceUrl + "/parking-service/api/v1/parking-records/end/" + id)
                 .retrieve()
                 .bodyToMono(ParkingRecordDTO.class)
                 .block(); // blocks until response arrives
